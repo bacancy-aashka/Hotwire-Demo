@@ -1,21 +1,26 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Posts</h1>
+<%= turbo_stream_from "new_post_list" %>
+<%= turbo_frame_tag "post_frame", src: new_post_path, target: "_top" %>
+
+<h1 class="mt-4">Posts</h1>
 
 <div>
-  <table id="posts" class="border-separate border border-slate-500 border-spacing-2 w-full">
+  <table class="border-separate border border-slate-500 border-spacing-2 w-full">
       <tr>
+        <th> Image </th>
         <th> Title </th>
-        <th> User Mail </th>
+        <th> User Name </th>
+        <th> Date </th>
         <th> Actions </th>
       </tr>
-    <% @posts.each do |post| %>
-      <%= render post %>
-    <% end %>
+    <tbody id="posts">
+      <% @posts.each do |post| %>
+        <%= render post %>
+      <% end %>
+    </tbody>
   </table>
 </div>
-
-<%= turbo_frame_tag "post_frame", src: new_post_path, target: "_top" %>
 
 <br>
 <% if user_signed_in? %>

@@ -17,10 +17,15 @@
 #  user_id  (user_id => users.id)
 #
 class Post < ApplicationRecord
+  encrypts :title
+  has_one_attached :image
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
   validates_presence_of :title, message: "can't be blank"
-  # after_create_commit do
-  #   broadcast_append_to "posts_list"
-  # end
+  after_commit do
+    broadcast_prepend_to "new_post_list",
+      target: "posts",
+      partial: "posts/post",
+      locals: { post: self }
+  end
 end

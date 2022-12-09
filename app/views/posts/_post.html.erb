@@ -1,13 +1,19 @@
 <tr id="<%= dom_id post %>">
   <td class="border border-slate-400">
+    <% if post.image.present? %>
+      <%= image_tag post.image, class: "rounded-lg w-52 h-32 mx-auto" %>
+    <% end %>
+  </td>
+  <td class="border border-slate-400">
     <%= post.title %>
   </td>
-
   <td class="border border-slate-400">
-    <%= post.user.email %>
+    <%= post.user.username.titleize %>
+  </td>
+  <td class="border border-slate-400">
+    <%= post.created_at.strftime("%d/%m/%Y %H:%M") %>
   </td>
   <td class="border border-slate-400">
     <%= link_to "Show this post", post %>
   </td>
-
 </tr>

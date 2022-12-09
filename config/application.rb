@@ -10,6 +10,10 @@ module HotwireDemo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+    config.active_record.encryption.primary_key = "ZSKVcE3BabzJv7BGFFwI1MWKkFS3UNo0"
+    config.active_record.encryption.deterministic_key = "RxV2A53DEONWMkThJZBeN55EEqRpKQxw"
+    config.active_record.encryption.key_derivation_salt = "dQHyWMcNrLtoVfgrEDCmSmkOtyqeGFVG"
+
 
     # Configuration for the application, engines, and railties goes here.
     #
